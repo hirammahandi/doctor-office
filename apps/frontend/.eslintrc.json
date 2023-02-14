@@ -1,0 +1,39 @@
+{
+  "extends": [
+    "plugin:@nrwl/nx/react-typescript",
+    "next",
+    "next/core-web-vitals",
+    "../../.eslintrc.json"
+  ],
+  "ignorePatterns": ["!**/*", ".next/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@next/next/no-html-link-for-pages": ["error", "apps/frontend/pages"],
+        "react/react-in-jsx-scope": "off",
+        "react/function-component-definition": [
+          2,
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ],
+  "rules": {
+    "@next/next/no-html-link-for-pages": "off"
+  },
+  "env": {
+    "jest": true
+  }
+}
