@@ -16,3 +16,28 @@ export class BaseModel extends BaseEntity implements IBaseModel {
   })
   updatedAt: Date;
 }
+
+// @note dynamic guard
+/*
+import { CanActivate, ExecutionContext, mixin } from '@nestjs/common'
+import { IRequestPayload } from '../types/request'
+
+type AllowedPaths = `/${string}/${string}`
+
+export const AdminGuard = (allowedPaths?: AllowedPaths[]) => {
+  class AdminGuardMixin implements CanActivate {
+    canActivate(context: ExecutionContext): boolean {
+      const request = context.switchToHttp().getRequest<IRequestPayload>()
+      const requestPath = request.path as AllowedPaths
+
+      if (allowedPaths?.includes(requestPath)) return true
+
+      return request.isAdmin
+    }
+  }
+
+  const guard = mixin(AdminGuardMixin)
+  return guard
+}
+
+*/
