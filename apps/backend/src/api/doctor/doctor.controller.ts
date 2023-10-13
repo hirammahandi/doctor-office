@@ -3,8 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Param,
   ParseIntPipe,
   Patch,
@@ -12,10 +10,10 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { DoctorService } from "./doctor.service";
-import { CreateDoctorDto, UpdateDoctorDto } from "./dto";
 import { GetDoctor } from "../../shared/decorators";
 import { JwtGuard } from "../authentication/guard";
+import { DoctorService } from "./doctor.service";
+import { CreateDoctorDto, UpdateDoctorDto } from "./dto";
 
 @ApiTags("doctors")
 @Controller("doctor")
