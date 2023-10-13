@@ -63,17 +63,22 @@ const theme = createTheme({
   },
 });
 
-const App = ({ Component, ...rest }: AppProps) => {
+interface CustomAppProps extends AppProps {
+  Component: AppProps["Component"] & { getLayout?: (page: any) => any };
+}
+
+const App = ({ Component, ...rest }: CustomAppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
+  const getLayout = Component.getLayout || ((page: any) => page);
+
+  console.log(getLayout);
 
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <NextNProgress />
-        <Box sx={{ minHeight: "100vh" }}>
-          <Component {...props.pageProps} />
-        </Box>
+        <Box sx={{ minHeight: "100vh" }}>{getLayout(<Component {...props.pageProps} />)}</Box>
       </ThemeProvider>
       <ToastContainer />
     </Provider>
